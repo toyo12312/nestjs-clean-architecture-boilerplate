@@ -17,16 +17,16 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  @ApiOperation({ summary: 'Реєстрація нового користувача' })
+  @ApiOperation({ summary: 'Register a new user' })
   @ApiResponse({
     status: 201,
-    description: 'Користувач успішно створений',
+    description: 'User created successfully',
     type: UserResponseDto,
   })
-  @ApiResponse({ status: 400, description: 'Помилка валідації даних' })
+  @ApiResponse({ status: 400, description: 'Validation error' })
   @ApiResponse({
     status: 409,
-    description: 'Користувач з таким email вже існує',
+    description: 'User with this email already exists',
   })
   async register(@Body() registerDto: RegisterDto): Promise<UserResponseDto> {
     const command = new RegisterCommand(
@@ -61,7 +61,7 @@ export class AuthController {
     const isValid = await this.verify2FAUseCase.execute(userId, token);
 
     return {
-      message: '2FA успішно ввімкнено!',
+      message: '2FA verified successfully!',
       success: isValid,
     };
   }
