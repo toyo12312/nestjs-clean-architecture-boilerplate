@@ -1,4 +1,3 @@
-
 FROM node:20-alpine AS builder
 
 WORKDIR /app
@@ -13,7 +12,7 @@ FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-NODE_ENV=production
+
 ENV NODE_ENV=production
 
 COPY package*.json ./
